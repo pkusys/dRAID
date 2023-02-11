@@ -17,6 +17,8 @@ git clone https://github.com/pkusys/dRAID.git
 1. Instantiate a new experiment (https://www.cloudlab.us/instantiate.php).
 2. Choose the pre-created profile "dRAID-AE".
 3. (Optional) You may change "Number of hosts" to a smaller number (> 6 nodes). If you only want to evaluate the functionality, 10 nodes should be sufficient.
+   - You won’t be able to reproduce some of the results that require more nodes, including Figure 12, 14, 16, 25, 27, 29.
+   - Some scripts are hardcoded for 20 nodes. You might need to make minor changes to get it work if you want to reproduce other figures with only ten nodes.
 4. Use the default setting for the rest of the steps.
 5. After a few minutes, the experiment page should say "Your experiment is ready".
 6. Copy the content under the "Manifest" tab on the experiment page to a local file `manifest.xml`
@@ -27,32 +29,5 @@ vim manifest.xml
 ```
 7. Generate configuration files and upload them to all the nodes by running:
 ```Bash
-./parse_upload_manifest.sh manifest.xml <your_CloudLab_username>
-```
-
-## CentOS Setup
-
-The CentOS nodes are all the nodes except the last one. Check the "List View" tab of your experiment page for more details.
-
-SSH into each of the nodes, at your home directory run:
-```Bash
-# clone the artifacts
-git clone https://github.com/pkusys/dRAID.git
-# run the setup script
-cd dRAID/setup
-./configure_cloudlab_centos.sh
-```
-It will take a few minutes to run, you can setup multiple nodes in parallel.
-
-## Ubuntu Setup
-
-The Ubuntu node is the last one. Check the "List View" tab of your experiment page for more details.
-
-SSH into the node, at your home directory run:
-```Bash
-# clone the artifacts
-git clone https://github.com/pkusys/dRAID.git
-# run the setup script
-cd dRAID/setup
-./configure_cloudlab_ubuntu.sh
+./setup_all_nodes.sh manifest.xml <your_CloudLab_username>
 ```

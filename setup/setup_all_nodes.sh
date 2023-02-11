@@ -12,7 +12,9 @@ scp hosts.txt "$username@$line:~/artifacts/"
 scp ip_addrs_100g.txt "$username@$line:~/artifacts/"
 scp ip_addrs_25g.txt "$username@$line:~/artifacts/"
 scp "$manifest" "$username@$line:~/artifacts/"
-echo "$line uploaded!"
+scp setup_ubuntu.sh "$username@$line:~/"
+ssh -tt "$username@$line" "./setup_ubuntu.sh"
+echo "$line is ready!"
 
 while read -u10 line
 do
@@ -22,5 +24,19 @@ do
   scp ip_addrs_100g.txt "$username@$line:~/artifacts/"
   scp ip_addrs_25g.txt "$username@$line:~/artifacts/"
   scp "$manifest" "$username@$line:~/artifacts/"
-  echo "$line uploaded!"
+  scp setup_centos.sh "$username@$line:~/"
+  ssh -tt "$username@$line" "./setup_centos.sh"
+  echo "Uploaded to $line!"
 done 10< hosts.txt
+
+while read -u10 line
+do
+  while ssh "$username@$line" '[ ! -d ~/rocksdb ]'
+  do
+    echo "Setup is ongoing on $line"
+    sleep 10
+  done
+  echo "$line is ready!"
+done 10< hosts.txt
+
+echo "You are all set!"
