@@ -8,4 +8,4 @@ cd ~
 git clone https://github.com/pkusys/dRAID.git
 # run the setup script
 cd dRAID/setup
-nohup ./configure_cloudlab_centos.sh > /dev/null 2>&1 &
+sh -c "nohup ./configure_cloudlab_centos.sh > /dev/null 2>&1 &"
