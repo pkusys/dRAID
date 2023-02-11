@@ -12,8 +12,8 @@ scp hosts.txt "$username@$line:~/artifacts/"
 scp ip_addrs_100g.txt "$username@$line:~/artifacts/"
 scp ip_addrs_25g.txt "$username@$line:~/artifacts/"
 scp "$manifest" "$username@$line:~/artifacts/"
-scp setup_ubuntu.sh "$username@$line:~/"
-ssh -tt "$username@$line" "./setup_ubuntu.sh"
+ssh -tt "$username@$line" "git clone https://github.com/pkusys/dRAID.git"
+ssh -tt "$username@$line" "dRAID/setup/configure_cloudlab_ubuntu.sh"
 echo "$line is ready!"
 
 while read -u10 line
@@ -24,10 +24,8 @@ do
   scp ip_addrs_100g.txt "$username@$line:~/artifacts/"
   scp ip_addrs_25g.txt "$username@$line:~/artifacts/"
   scp "$manifest" "$username@$line:~/artifacts/"
-  #scp setup_centos.sh "$username@$line:~/"
-  #ssh -tt "$username@$line" "./setup_centos.sh"
   ssh -tt "$username@$line" "git clone https://github.com/pkusys/dRAID.git"
-  ssh -tt "$username@$line" "nohup dRAID/setup/configure_cloudlab_centos.sh > foo.out 2> foo.err < /dev/null &"
+  ssh "$username@$line" "nohup dRAID/setup/configure_cloudlab_centos.sh > foo.out 2> foo.err < /dev/null &"
   echo "Uploaded to $line!"
 done 10< hosts.txt
 
