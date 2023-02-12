@@ -5,7 +5,7 @@ conf_json=/users/${username}/artifacts/raid5_100g_d.json
 cli_num=24
 
 app_path=~/rocksdb/ycsb/build
-cur_path=${mkfs_path}/fig21
+cur_path=~/dRAID/YCSB/dRAID/fig21
 
 sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 mkdir -p results

@@ -9,7 +9,7 @@ cd ~/dRAID/YCSB/dRAID
 2. 
 ### Run the experiment for all data points
 ```Bash
-cd ~/dRAID/FIO/dRAID/fig20
+cd ~/dRAID/YCSB/dRAID/fig20
 ./run_all.sh
 ```
 

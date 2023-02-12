@@ -1,0 +1,11 @@
+# Ignore all files without extension
+*
+!*.*
+!*/
+!Makefile
+# ========================
+
+*.o
+*.a
+
+*.log
