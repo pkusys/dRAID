@@ -16,7 +16,8 @@ sudo nvme list # number of drives should be equal to your testbed size
 ```
 
 3. Follow the instruction of each experiment to reproduce the results.
-
+   - We have not thoroughly tested `run_all.sh` yet, and they may contain bugs.
+   - If `run_all.sh` does not work, please manually generate each data point.
 4. Once you are done, disconnect from all remote targets by running:
 ```Bash
 cd ~/dRAID/FIO/Linux

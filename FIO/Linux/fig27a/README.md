@@ -1,7 +1,14 @@
 # Linux RAID - Figure 27a
 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/FIO/Linux/fig27a
+./run_all.sh # enter y when it prompts
+```
 
-1. mount RAID by running :
+### Run the experiment for an individual data point
+
+1. mount RAID by running:
 ```Bash
 cd ~/dRAID/FIO/Linux/fig27a
 ./mount.sh # enter y when it prompts
