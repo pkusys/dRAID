@@ -1,5 +1,13 @@
 # dRAID - Figure 12
 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/FIO/dRAID/fig12
+./run_all.sh
+```
+
+### Run the experiment for an individual data point
+
 For each of the stripe width, run:
 ```Bash
 cd ~/dRAID/FIO/dRAID/fig12

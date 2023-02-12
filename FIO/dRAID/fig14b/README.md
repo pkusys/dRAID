@@ -1,5 +1,13 @@
 # dRAID - Figure 14b
 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/FIO/dRAID/fig14b
+./run_all.sh
+```
+
+### Run the experiment for an individual data point
+
 For each of the I/O depth, run:
 ```Bash
 cd ~/dRAID/FIO/dRAID/fig14b

@@ -54,7 +54,7 @@ if [[ "$io_size" == "128" ]]
 then
   ../generate_raid_config.sh 512 6 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 6 2
-    sleep 3
+  sleep 3
   sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6_read.conf -ioengine=../spdk_bdev -iodepth=16 -rw=randread -bs=128k -numjobs=2
   exit 0
 fi

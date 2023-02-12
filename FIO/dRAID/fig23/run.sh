@@ -95,7 +95,7 @@ then
   exit 0
 fi
 
-if [[ "$io_size" == "3584" ]]
+if [[ "$io_size" == "3072" ]]
 then
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2

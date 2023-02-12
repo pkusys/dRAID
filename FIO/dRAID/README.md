@@ -18,7 +18,9 @@ make spdk_bdev
 ```
 
 3. Follow the instruction of each experiment to reproduce the results.
+   - We have not thoroughly tested `run_all.sh` yet, and they may contain bugs.
+   - If `run_all.sh` does not work, please manually generate each data point.
    - Figure 17 requires a different testbed setup and a bit code hacking, which we do not include in this artifact.
-   - Ignore the warning "RPC client command timeout". It does not affect the experiments.
+   - Ignore the warning `RPC client command timeout`. It does not affect the experiments.
    - Ignore the error message `io_device Raid0 not unregistered`. We have not implemented graceful shutdown yet.
    - If you see RDMA related errors or the experiment hangs at the beginning (more often observed for large stripe width), this is due to race conditions caused by imperfect implementation of the start-up process. You can safely kill and rerun the command.

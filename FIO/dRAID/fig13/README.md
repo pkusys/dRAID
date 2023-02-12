@@ -1,5 +1,13 @@
 # dRAID - Figure 13
 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/FIO/dRAID/fig13
+./run_all.sh
+```
+
+### Run the experiment for an individual data point
+
 For each of the read ratio, run:
 ```Bash
 cd ~/dRAID/FIO/dRAID/fig13
