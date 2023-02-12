@@ -12,7 +12,16 @@ cd ~/dRAID/YCSB/SPDK/fig21
 ../generate_raid_config.sh 512 8 1
 ```
 
-3. For each workload, run:
+3. 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/YCSB/SPDK/fig21
+./run_all.sh
+```
+
+### Run the experiment for an individual data point
+
+For each workload, run:
 ```Bash
 ./run.sh <workload> # must be one of [A,B,C,D,F]
 ```
