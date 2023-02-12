@@ -1,5 +1,13 @@
 # SPDK RAID - Figure 28
 
+### Run the experiment for all data points
+```Bash
+cd ~/dRAID/FIO/SPDK/fig28
+./run_all.sh
+```
+
+### Run the experiment for an individual data point
+
 1. Generate the host-side configuration file on node0:
 ```Bash
 cd ~/dRAID/FIO/SPDK/fig28
