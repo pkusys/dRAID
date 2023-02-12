@@ -20,14 +20,17 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $mkfs_path
-  sudo ./mkfs $conf_json Raid0
-  sleep 1
-  cd $cur_path
-  ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
-  sleep 6
-  cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloada.spec $cli_num /users/${username}/data \
-   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 24 > ${cur_path}/results/A.log
+  sudo timeout -k 5 180 ./mkfs $conf_json Raid0
+  if [[ $? == 0 ]]
+  then
+    sleep 1
+    cd $cur_path
+    ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
+    sleep 6
+    cd $app_path
+    sudo timeout -k 5 180 ./test ../workloads/workloada.spec $cli_num /users/${username}/data \
+    /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 24 > ${cur_path}/results/A.log
+  fi
 fi
 
 cd $cur_path
@@ -38,14 +41,17 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $mkfs_path
-  sudo ./mkfs $conf_json Raid0
-  sleep 1
-  cd $cur_path
-  ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
-  sleep 6
-  cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadb.spec $cli_num /users/${username}/data \
-   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/B.log
+  sudo timeout -k 5 180 ./mkfs $conf_json Raid0
+  if [[ $? == 0 ]]
+  then
+    sleep 1
+    cd $cur_path
+    ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
+    sleep 6
+    cd $app_path
+    sudo timeout -k 5 180 ./test ../workloads/workloadb.spec $cli_num /users/${username}/data \
+    /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/B.log
+  fi
 fi
 
 cd $cur_path
@@ -56,14 +62,17 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $mkfs_path
-  sudo ./mkfs $conf_json Raid0
-  sleep 1
-  cd $cur_path
-  ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
-  sleep 6
-  cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadc.spec $cli_num /users/${username}/data \
-   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/C.log
+  sudo timeout -k 5 180 ./mkfs $conf_json Raid0
+  if [[ $? == 0 ]]
+  then
+    sleep 1
+    cd $cur_path
+    ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
+    sleep 6
+    cd $app_path
+    sudo timeout -k 5 180 ./test ../workloads/workloadc.spec $cli_num /users/${username}/data \
+    /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/C.log
+  fi
 fi
 
 cd $cur_path
@@ -74,14 +83,17 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $mkfs_path
-  sudo ./mkfs $conf_json Raid0
-  sleep 1
-  cd $cur_path
-  ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
-  sleep 6
-  cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadd.spec $cli_num /users/${username}/data \
-   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/D.log
+  sudo timeout -k 5 180 ./mkfs $conf_json Raid0
+  if [[ $? == 0 ]]
+  then
+    sleep 1
+    cd $cur_path
+    ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
+    sleep 6
+    cd $app_path
+    sudo timeout -k 5 180 ./test ../workloads/workloadd.spec $cli_num /users/${username}/data \
+    /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/D.log
+  fi
 fi
 
 cd $cur_path
@@ -92,12 +104,15 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $mkfs_path
-  sudo ./mkfs $conf_json Raid0
-  sleep 1
-  cd $cur_path
-  ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
-  sleep 6
-  cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadf.spec $cli_num /users/${username}/data \
-   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/F.log
+  sudo timeout -k 5 180 ./mkfs $conf_json Raid0
+  if [[ $? == 0 ]]
+  then
+    sleep 1
+    cd $cur_path
+    ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
+    sleep 6
+    cd $app_path
+    sudo timeout -k 5 180 ./test ../workloads/workloadf.spec $cli_num /users/${username}/data \
+    /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/F.log
+  fi
 fi
