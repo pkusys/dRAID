@@ -16,7 +16,7 @@ git clone https://github.com/pkusys/dRAID.git
 
 1. Instantiate a new experiment (https://www.cloudlab.us/instantiate.php).
 2. Choose the pre-created profile "dRAID-AE".
-3. (Optional) You may change "Number of hosts" to a smaller number (> 6 nodes). If you only want to evaluate the functionality, 10 nodes should be sufficient.
+3. (Optional) You may change "Number of hosts" to a smaller number (>= 6 nodes). If you only want to evaluate the functionality, 10 nodes should be sufficient.
    - You won’t be able to reproduce some of the results that require more nodes, including Figure 12, 14, 16, 25, 27, 29.
    - Some scripts are hardcoded for 20 nodes. You might need to make minor changes to get it work if you want to reproduce other figures with only ten nodes.
 4. Use the default setting for the rest of the steps.
