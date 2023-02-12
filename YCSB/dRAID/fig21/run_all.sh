@@ -1,7 +1,7 @@
 #!/bin/bash
 
 username=`whoami`
-conf_json=/users/kyleshu/artifacts/raid5_100g_d.json
+conf_json=/users/${username}/artifacts/raid5_100g_d.json
 cli_num=24
 
 app_path=~/rocksdb/ycsb/build
@@ -19,8 +19,8 @@ then
   sleep 6
   cd $app_path
   cli_num=40
-  sudo timeout -k 5 180 ./test ../workloads/workloada.spec $cli_num /users/kyleshu/data \
-   /users/kyleshu/data 1 rocksdb /users/kyleshu/bak $conf_json Raid0 1 > ${cur_path}/results/A.log
+  sudo timeout -k 5 180 ./test ../workloads/workloada.spec $cli_num /users/${username}/data \
+   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/A.log
 fi
 
 cli_num=24
@@ -32,8 +32,8 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadb.spec $cli_num /users/kyleshu/data \
-   /users/kyleshu/data 1 rocksdb /users/kyleshu/bak $conf_json Raid0 1 > ${cur_path}/results/B.log
+  sudo timeout -k 5 180 ./test ../workloads/workloadb.spec $cli_num /users/${username}/data \
+   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/B.log
 fi
 
 cd $cur_path
@@ -44,8 +44,8 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadc.spec $cli_num /users/kyleshu/data \
-   /users/kyleshu/data 1 rocksdb /users/kyleshu/bak $conf_json Raid0 1 > ${cur_path}/results/C.log
+  sudo timeout -k 5 180 ./test ../workloads/workloadc.spec $cli_num /users/${username}/data \
+   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/C.log
 fi
 
 cd $cur_path
@@ -56,8 +56,8 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadd.spec $cli_num /users/kyleshu/data \
-   /users/kyleshu/data 1 rocksdb /users/kyleshu/bak $conf_json Raid0 1 > ${cur_path}/results/D.log
+  sudo timeout -k 5 180 ./test ../workloads/workloadd.spec $cli_num /users/${username}/data \
+   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/D.log
 fi
 
 cd $cur_path
@@ -68,6 +68,6 @@ then
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 1
   sleep 6
   cd $app_path
-  sudo timeout -k 5 180 ./test ../workloads/workloadf.spec $cli_num /users/kyleshu/data \
-   /users/kyleshu/data 1 rocksdb /users/kyleshu/bak $conf_json Raid0 1 > ${cur_path}/results/F.log
+  sudo timeout -k 5 180 ./test ../workloads/workloadf.spec $cli_num /users/${username}/data \
+   /users/${username}/data 1 rocksdb /users/${username}/bak $conf_json Raid0 1 > ${cur_path}/results/F.log
 fi

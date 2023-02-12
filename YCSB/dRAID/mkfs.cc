@@ -46,7 +46,7 @@ extern "C" {
 const char *g_bdev_name;
 static uint64_t g_cluster_size;
 // static std::string g_host_ip_addr = "192.168.2.1";
-static const char *g_addr_file = "/users/kyleshu/artifacts/ip_addrs_100g.txt";
+static const char *g_addr_file = "~/artifacts/ip_addrs_100g.txt";
 // static uint8_t g_phy_port = 2;
 
 // std::string
