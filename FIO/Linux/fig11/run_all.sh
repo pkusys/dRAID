@@ -13,7 +13,7 @@ function cleanup()
     sudo mdadm --zero-superblock /dev/nvme9n1
 }
 
-trap cleanup SIGINT
+trap "cleanup; exit 0" SIGINT
 
 sudo rm -r results
 mkdir results

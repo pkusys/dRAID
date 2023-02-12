@@ -13,7 +13,7 @@ function cleanup()
     done
 }
 
-trap cleanup SIGINT
+trap "cleanup; exit 0" SIGINT
 
 sudo rm -r results
 mkdir results

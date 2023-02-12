@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trap "./unmount.sh" SIGINT
+trap "./unmount.sh; exit 0" SIGINT
 
 sudo rm -r results
 mkdir results
