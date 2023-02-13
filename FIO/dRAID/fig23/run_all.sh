@@ -2,11 +2,11 @@
 
 username=`whoami`
 
-sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 mkdir -p results
 
 if [ ! -e results/4K.log ] || ! grep -q "clat" results/4K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 4K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -16,6 +16,7 @@ fi
 
 if [ ! -e results/8K.log ] || ! grep -q "clat" results/8K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 8K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -25,6 +26,7 @@ fi
 
 if [ ! -e results/16K.log ] || ! grep -q "clat" results/16K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 16K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -34,6 +36,7 @@ fi
 
 if [ ! -e results/32K.log ] || ! grep -q "clat" results/32K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 32K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -43,6 +46,7 @@ fi
 
 if [ ! -e results/64K.log ] || ! grep -q "clat" results/64K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 64K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -52,6 +56,7 @@ fi
 
 if [ ! -e results/128K.log ] || ! grep -q "clat" results/128K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 128K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -61,6 +66,7 @@ fi
 
 if [ ! -e results/256K.log ] || ! grep -q "clat" results/256K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 256K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -70,6 +76,7 @@ fi
 
 if [ ! -e results/512K.log ] || ! grep -q "clat" results/512K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 512K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -79,6 +86,7 @@ fi
 
 if [ ! -e results/1024K.log ] || ! grep -q "clat" results/1024K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 1024K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -88,6 +96,7 @@ fi
 
 if [ ! -e results/2048K.log ] || ! grep -q "clat" results/2048K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 2048K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -97,6 +106,7 @@ fi
 
 if [ ! -e results/3072K.log ] || ! grep -q "clat" results/3072K.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 3072K I/O size"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2

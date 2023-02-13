@@ -2,7 +2,6 @@
 
 username=`whoami`
 
-sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 mkdir -p results
 
 declare -a arr=("1" "2" "4" "8" "16" "20" "24" "28" "32" "34" "36" "38" "40" "44" "52" "64")
@@ -12,6 +11,7 @@ do
   let total_io_depth=$i*2
   if [ ! -e results/${total_io_depth}.log ] || ! grep -q "clat" results/${total_io_depth}.log
   then
+    sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
     echo "generating results on I/O depth $total_io_depth"
     ../generate_raid_config.sh 512 18 2
     ../run_server_remote_nvme.sh $username raid5 100g 512 18 2

@@ -2,11 +2,11 @@
 
 username=`whoami`
 
-sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 mkdir -p results
 
 if [ ! -e results/0.log ] || ! grep -q "clat" results/0.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on read ratio 0"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -16,6 +16,7 @@ fi
 
 if [ ! -e results/25.log ] || ! grep -q "clat" results/25.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on read ratio 25"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -25,6 +26,7 @@ fi
 
 if [ ! -e results/50.log ] || ! grep -q "clat" results/50.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on read ratio 50"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -34,6 +36,7 @@ fi
 
 if [ ! -e results/75.log ] || ! grep -q "clat" results/75.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on read ratio 75"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
@@ -43,6 +46,7 @@ fi
 
 if [ ! -e results/100.log ] || ! grep -q "clat" results/100.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on read ratio 100"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2

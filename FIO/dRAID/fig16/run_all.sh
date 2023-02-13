@@ -2,11 +2,11 @@
 
 username=`whoami`
 
-sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 mkdir -p results
 
 if [ ! -e results/4.log ] || ! grep -q "clat" results/4.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 4"
   ../generate_raid_config.sh 512 4 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 4 2
@@ -16,6 +16,7 @@ fi
 
 if [ ! -e results/6.log ] || ! grep -q "clat" results/6.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 6"
   ../generate_raid_config.sh 512 6 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 6 2
@@ -25,6 +26,7 @@ fi
 
 if [ ! -e results/8.log ] || ! grep -q "clat" results/8.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 8"
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 8 2
@@ -34,6 +36,7 @@ fi
 
 if [ ! -e results/10.log ] || ! grep -q "clat" results/10.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 10"
   ../generate_raid_config.sh 512 10 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 10 2
@@ -43,6 +46,7 @@ fi
 
 if [ ! -e results/12.log ] || ! grep -q "clat" results/12.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 12"
   ../generate_raid_config.sh 512 12 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 12 2
@@ -52,6 +56,7 @@ fi
 
 if [ ! -e results/14.log ] || ! grep -q "clat" results/14.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 14"
   ../generate_raid_config.sh 512 14 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 14 2
@@ -61,6 +66,7 @@ fi
 
 if [ ! -e results/16.log ] || ! grep -q "clat" results/16.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 16"
   ../generate_raid_config.sh 512 16 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 16 2
@@ -70,6 +76,7 @@ fi
 
 if [ ! -e results/18.log ] || ! grep -q "clat" results/18.log
 then
+  sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on stripe width 18"
   ../generate_raid_config.sh 512 18 2
   ../run_server_remote_nvme.sh $username raid5 100g 512 18 2
