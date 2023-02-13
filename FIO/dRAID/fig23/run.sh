@@ -97,8 +97,8 @@ fi
 
 if [[ "$io_size" == "3072" ]]
 then
-  ../generate_raid_config.sh 512 8 2
-  ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
+  ../generate_raid_config.sh 512 8 3
+  ../run_server_remote_nvme.sh $username raid6 100g 512 8 3
   sleep 3
   sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=2 -rw=randwrite -bs=3072k -numjobs=3
   exit 0

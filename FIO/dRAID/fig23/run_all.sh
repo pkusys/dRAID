@@ -108,8 +108,8 @@ if [ ! -e results/3072K.log ] || ! grep -q "clat" results/3072K.log
 then
   sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
   echo "generating results on 3072K I/O size"
-  ../generate_raid_config.sh 512 8 2
-  ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
+  ../generate_raid_config.sh 512 8 3
+  ../run_server_remote_nvme.sh $username raid6 100g 512 8 3
   sleep 3
   sudo timeout -k 5 60 sh -c "LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=2 -rw=randwrite -bs=3072k -numjobs=3 > results/3072K.log"
 fi

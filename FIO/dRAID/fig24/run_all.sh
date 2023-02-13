@@ -60,6 +60,6 @@ then
   echo "generating results on 1024K chunk size"
   ../generate_raid_config.sh 1024 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 1024 8 2
-  sleep 3
-  sudo timeout -k 5 60 sh -c "LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=12 -rw=randwrite -bs=128k -numjobs=2 > results/1024K.log"
+  sleep 5
+  sudo timeout -k 5 100 sh -c "LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=12 -rw=randwrite -bs=128k -numjobs=2 > results/1024K.log"
 fi
