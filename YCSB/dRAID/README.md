@@ -1,6 +1,6 @@
 # dRAID YCSB Experiments
 
-If not specified, all the following operations are from node0, which servers as the host. 
+If not specified, all the following operations are from node0, which serves as the host. 
 
 >Make sure you have successfully run the basic test under `dRAID/` before you proceed.
 

@@ -1,6 +1,6 @@
 # SPDK YCSB Experiments
 
-If not specified, all the following operations are from node0, which servers as the host.
+If not specified, all the following operations are from node0, which serves as the host.
 
 1. Start all remote targets by running:
 ```Bash
