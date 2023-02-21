@@ -25,34 +25,34 @@ def parse_log(filename):
         f = open(filename, "r")
         data = f.read()
         f.close()
-        read_bw_gb = re.search(r'READ: bw=(\d*\.*\d+)GiB/s', data)
+        read_bw_gb = re.search(r'READ: bw=(\d*\.?\d+)GiB/s', data)
         if read_bw_gb:
             result['read_bw'] = float(read_bw_gb.group(1)) * 1024
-        read_bw_mb = re.search(r'READ: bw=(\d*\.*\d+)MiB/s', data)
+        read_bw_mb = re.search(r'READ: bw=(\d*\.?\d+)MiB/s', data)
         if read_bw_mb:
             result['read_bw'] = float(read_bw_mb.group(1))
-        write_bw_gb = re.search(r'WRITE: bw=(\d*\.*\d+)GiB/s', data)
+        write_bw_gb = re.search(r'WRITE: bw=(\d*\.?\d+)GiB/s', data)
         if write_bw_gb:
             result['write_bw'] = float(write_bw_gb.group(1)) * 1024
-        write_bw_mb = re.search(r'WRITE: bw=(\d*\.*\d+)MiB/s', data)
+        write_bw_mb = re.search(r'WRITE: bw=(\d*\.?\d+)MiB/s', data)
         if write_bw_mb:
             result['write_bw'] = float(write_bw_mb.group(1))
-        read_lat_ms = re.search(r'read: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        read_lat_ms = re.search(r'read: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if read_lat_ms:
             result['read_lat'] = float(read_lat_ms.group(1)) * 1000
-        read_lat_us = re.search(r'read: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        read_lat_us = re.search(r'read: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if read_lat_us:
             result['read_lat'] = float(read_lat_us.group(1))
-        read_lat_ns = re.search(r'read: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        read_lat_ns = re.search(r'read: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if read_lat_ns:
             result['read_lat'] = float(read_lat_ns.group(1)) / 1000
-        write_lat_ms = re.search(r'write: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        write_lat_ms = re.search(r'write: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if write_lat_ms:
             result['write_lat'] = float(write_lat_ms.group(1)) * 1000
-        write_lat_us = re.search(r'write: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        write_lat_us = re.search(r'write: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if write_lat_us:
             result['write_lat'] = float(write_lat_us.group(1))
-        write_lat_ns = re.search(r'write: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        write_lat_ns = re.search(r'write: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.?\d+), max=(?:\d*\.?\d+k?), avg=(\d*\.?\d+),', data, re.M)
         if write_lat_ns:
             result['write_lat'] = float(write_lat_ns.group(1)) / 1000
     return result
