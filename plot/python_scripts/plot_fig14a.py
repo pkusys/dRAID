@@ -15,9 +15,8 @@ draid_bw = []
 linux_lat = []
 spdk_lat = []
 draid_lat = []
-
-draid_filenames = ['1.log','2.log','4.log','8.log','16.log','20.log','24.log','28.log','32.log','34.log','36.log','38.log','40.log','44.log','52.log','64.log']
-spdk_filenames = ['1.log','2.log','3.log','4.log','5.log','6.log','7.log','9.log','12.log','20.log']
+draid_filenames = ['2.log','4.log','8.log','16.log','32.log','40.log','48.log','56.log','64.log','68.log','72.log','76.log','80.log','88.log','104.log','128.log']
+spdk_filenames = ['4.log','8.log','12.log','16.log','20.log','24.log','28.log','36.log','48.log','80.log']
 linux_filenames = ['1.log','2.log','3.log','4.log','5.log','6.log']
 
 def parse_log(filename):
