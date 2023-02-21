@@ -54,19 +54,26 @@ def parse_log(filename):
     f.close()
     result = dict()
     read_bw_gb = re.match(r'READ: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
-    print('read_bw_gb: ' + read_bw_gb.group())
+    if read_bw_gb is not None:
+        print('read_bw_gb: ' + read_bw_gb.group())
     read_bw_mb = re.match(r'READ: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?MiB/s', data)
-    print('read_bw_mb: ' + read_bw_mb.group())
+    if read_bw_mb is not None:
+        print('read_bw_mb: ' + read_bw_mb.group())
     write_bw_gb = re.match(r'WRITE: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
-    print('write_bw_gb: ' + write_bw_gb.group())
+    if write_bw_gb is not None:
+        print('write_bw_gb: ' + write_bw_gb.group())
     write_bw_mb = re.match(r'WRITE: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?MiB/s', data)
-    print('write_bw_mb: ' + write_bw_mb.group())
+    if write_bw_mb is not None:
+        print('write_bw_mb: ' + write_bw_mb.group())
     read_lat_ms = re.match(r'read: IOPS.*clat (msec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    print('read_lat_ms: ' + read_lat_ms.group())
+    if read_lat_ms is not None:
+        print('read_lat_ms: ' + read_lat_ms.group())
     read_lat_us = re.match(r'read: IOPS.*clat (usec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    print('read_lat_us: ' + read_lat_us.group())
+    if read_lat_us is not None:
+        print('read_lat_us: ' + read_lat_us.group())
     read_lat_ns = re.match(r'read: IOPS.*clat (nsec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    print('read_lat_ns: ' + read_lat_ns.group())
+    if read_lat_ns is not None:
+        print('read_lat_ns: ' + read_lat_ns.group())
 
 
 def add_value_labels(ax, spacing=5, formatstr="{:.1f}"):
@@ -222,4 +229,4 @@ def _raid5_read_lat():
 
 #_raid5_read_bw()
 #_raid5_read_lat()
-parse_log(sys.argv[1] + '4K.log')
+parse_log(sys.argv[1] + '/4K.log')
