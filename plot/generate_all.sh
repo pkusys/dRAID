@@ -5,10 +5,10 @@ declare -a ycsb_arr=("19a" "19b" "20" "21")
 
 for i in "${fio_arr[@]}"
 do
-  python3 python_scripts/plot_fig${i} ../FIO/dRAID/fig${i}/results ../FIO/SPDK/fig${i}/results ../FIO/Linux/fig${i}/results
+  python3 python_scripts/plot_fig${i}.py ../FIO/dRAID/fig${i}/results ../FIO/SPDK/fig${i}/results ../FIO/Linux/fig${i}/results
 done
 
 for i in "${ycsb_arr[@]}"
 do
-  python3 python_scripts/plot_fig${i} ../YCSB/dRAID/fig${i}/results ../YCSB/SPDK/fig${i}/results
+  python3 python_scripts/plot_fig${i}.py ../YCSB/dRAID/fig${i}/results ../YCSB/SPDK/fig${i}/results
 done
