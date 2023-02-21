@@ -16,4 +16,6 @@ cd <your local path to this repository>/plot
 python3 python_scripts/plot_fig<#> <path to a directory that contains dRAID results> <path to a directory that contains SPDK results> <path to a directory that contains Linux results (only for FIO experiments)>
 ```
 ***
-Note: We do not generate the interpolating B-spline for some figures as in the paper.
+**Note**
+- We do not generate the interpolating B-spline for some figures as in the paper.
+- Missing data points are substituted with zeroes.
