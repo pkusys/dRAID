@@ -9,12 +9,12 @@ import re
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 rc('text', usetex=True)
 
-linux_bw = np.array([])
-spdk_bw = np.array([])
-draid_bw = np.array([])
-linux_lat = np.array([])
-spdk_lat = np.array([])
-draid_lat = np.array([])
+linux_bw = []
+spdk_bw = []
+draid_bw = []
+linux_lat = []
+spdk_lat = []
+draid_lat = []
 
 io_size = [4,8,16,32,64,128]
 filenames = ['4K.log','8K.log','16K.log','32K.log','64K.log','128K.log']
@@ -58,34 +58,41 @@ def parse_log(filename):
     return result
 
 def collect_data(draid_path, spdk_path, linux_path):
+    global linux_bw, spdk_bw, draid_bw, linux_lat, spdk_lat, draid_lat
     for i in filenames:
-        extracted_data = parse_log(draid_path + i)
+        extracted_data = parse_log(os.path.join(draid_path, i))
         if extracted_data['read_bw']:
-            np.append(draid_bw, extracted_data['read_bw'])
+            draid_bw.append(extracted_data['read_bw'])
         else:
-            np.append(draid_bw, 0)
+            draid_bw.append(0)
         if extracted_data['read_lat']:
-            np.append(draid_lat, extracted_data['read_lat'])
+            draid_lat.append(extracted_data['read_lat'])
         else:
-            np.append(draid_lat, 0)
-        extracted_data = parse_log(spdk_path + i)
+            draid_lat.append(0)
+        extracted_data = parse_log(os.path.join(spdk_path, i))
         if extracted_data['read_bw']:
-            np.append(spdk_bw, extracted_data['read_bw'])
+            spdk_bw.append(extracted_data['read_bw'])
         else:
-            np.append(spdk_bw, 0)
+            spdk_bw.append(0)
         if extracted_data['read_lat']:
-            np.append(spdk_lat, extracted_data['read_lat'])
+            spdk_lat.append(extracted_data['read_lat'])
         else:
-            np.append(spdk_lat, 0)
-        extracted_data = parse_log(linux_path + i)
+            spdk_lat.append(0)
+        extracted_data = parse_log(os.path.join(linux_path, i))
         if extracted_data['read_bw']:
-            np.append(linux_bw, extracted_data['read_bw'])
+            linux_bw.append(extracted_data['read_bw'])
         else:
-            np.append(linux_bw, 0)
+            linux_bw.append(0)
         if extracted_data['read_lat']:
-            np.append(linux_lat, extracted_data['read_lat'])
+            linux_lat.append(extracted_data['read_lat'])
         else:
-            np.append(linux_lat, 0)
+            linux_lat.append(0)
+    draid_bw = np.array(draid_bw)
+    draid_lat = np.array(draid_lat)
+    spdk_bw = np.array(spdk_bw)
+    spdk_lat = np.array(spdk_lat)
+    linux_bw = np.array(linux_bw)
+    linux_lat = np.array(linux_lat)
 
 def add_value_labels(ax, spacing=5, formatstr="{:.1f}"):
     """Add labels to the end of each bar in a bar chart.
@@ -239,5 +246,7 @@ def _raid5_read_lat():
     plt.savefig('plots/fig9b.pdf', bbox_inches='tight', pad_inches=0.2)
 
 collect_data(sys.argv[1], sys.argv[2], sys.argv[3])
+if not os.path.exists('plots'):
+    os.makedirs('plots')
 _raid5_read_bw()
 _raid5_read_lat()
