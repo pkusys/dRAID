@@ -56,9 +56,9 @@ def parse_log(filename):
     read_bw_gb = re.match(r'READ: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
     if read_bw_gb is not None:
         print('read_bw_gb: ' + read_bw_gb.group())
-    read_bw_mb = re.match(r'READ: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?MiB/s', data)
-    if read_bw_mb is not None:
-        print('read_bw_mb: ' + read_bw_mb.group())
+    read_bw_mb = re.search(r'READ: bw=(\d*\.*\d+)MiB/s', data)
+    if read_bw_mb:
+        print('read_bw_mb: ', read_bw_mb.group(1))
     write_bw_gb = re.match(r'WRITE: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
     if write_bw_gb is not None:
         print('write_bw_gb: ' + write_bw_gb.group())
@@ -68,9 +68,9 @@ def parse_log(filename):
     read_lat_ms = re.match(r'read: IOPS.*clat (msec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
     if read_lat_ms is not None:
         print('read_lat_ms: ' + read_lat_ms.group())
-    read_lat_us = re.match(r'read: IOPS.*clat (usec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    if read_lat_us is not None:
-        print('read_lat_us: ' + read_lat_us.group())
+    read_lat_us = re.search(r'read: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+    if read_lat_us:
+        print('read_lat_us: ' + read_lat_us.group(1))
     read_lat_ns = re.match(r'read: IOPS.*clat (nsec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
     if read_lat_ns is not None:
         print('read_lat_ns: ' + read_lat_ns.group())
