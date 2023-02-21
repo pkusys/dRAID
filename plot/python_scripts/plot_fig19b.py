@@ -29,7 +29,7 @@ def parse_log(filename):
             result['lat'] = float(lat.group(1))
     return result
 
-def collect_data(draid_path, spdk_path, linux_path):
+def collect_data(draid_path, spdk_path):
     global spdk_iops_d, draid_iops_d
     for i in filenames:
         extracted_data = parse_log(os.path.join(draid_path, i))
