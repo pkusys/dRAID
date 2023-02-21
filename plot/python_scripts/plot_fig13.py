@@ -5,6 +5,7 @@ from matplotlib import rc
 import os
 import sys
 import re
+from matplotlib.patches import Patch
 
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 rc('text', usetex=True)
