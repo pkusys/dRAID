@@ -9,72 +9,83 @@ import re
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 rc('text', usetex=True)
 
-linux_bw = np.array([2136,
-                     3933,
-                     7118,
-                     11.1 * 1024,
-                     11.4 * 1024,
-                     11.4 * 1024])
-spdk_bw = np.array([2665,
-                    5843,
-                    9820,
-                    11.3 * 1024,
-                    11.4 * 1024,
-                    11.4 * 1024])
-draid_bw = np.array([8688,
-                     11.1 * 1024,
-                     11.3 * 1024,
-                     11.3 * 1024,
-                     11.4 * 1024,
-                     11.4 * 1024])
-linux_lat = np.array([110.39,
-                      120.16,
-                      133.47,
-                      168.67,
-                      335.51,
-                      341.94])
-spdk_lat = np.array([106.91,
-                     125.23,
-                     135.41,
-                     172.63,
-                     257.36,
-                     342.42])
-draid_lat = np.array([100.09,
-                      119.82,
-                      129.36,
-                      171.56,
-                      256.89,
-                      342.21])
+linux_bw = np.array([])
+spdk_bw = np.array([])
+draid_bw = np.array([])
+linux_lat = np.array([])
+spdk_lat = np.array([])
+draid_lat = np.array([])
 
 io_size = [4,8,16,32,64,128]
+filenames = ['4K.log','8K.log','16K.log','32K.log','64K.log','128K.log']
 
 def parse_log(filename):
-    f = open(filename, "r")
-    data = f.read()
-    f.close()
     result = dict()
-    read_bw_gb = re.match(r'READ: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
-    if read_bw_gb is not None:
-        print('read_bw_gb: ' + read_bw_gb.group())
-    read_bw_mb = re.search(r'READ: bw=(\d*\.*\d+)MiB/s', data)
-    if read_bw_mb:
-        print('read_bw_mb: ', read_bw_mb.group(1))
-    write_bw_gb = re.match(r'WRITE: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?GiB/s', data)
-    if write_bw_gb is not None:
-        print('write_bw_gb: ' + write_bw_gb.group())
-    write_bw_mb = re.match(r'WRITE: bw=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?MiB/s', data)
-    if write_bw_mb is not None:
-        print('write_bw_mb: ' + write_bw_mb.group())
-    read_lat_ms = re.match(r'read: IOPS.*clat (msec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    if read_lat_ms is not None:
-        print('read_lat_ms: ' + read_lat_ms.group())
-    read_lat_us = re.search(r'read: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
-    if read_lat_us:
-        print('read_lat_us: ' + read_lat_us.group(1))
-    read_lat_ns = re.match(r'read: IOPS.*clat (nsec): min=.*avg=[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?,', data)
-    if read_lat_ns is not None:
-        print('read_lat_ns: ' + read_lat_ns.group())
+    if os.path.isfile(filename):
+        f = open(filename, "r")
+        data = f.read()
+        f.close()
+        read_bw_gb = re.search(r'READ: bw=(\d*\.*\d+)GiB/s', data)
+        if read_bw_gb:
+            result['read_bw'] = float(read_bw_gb.group(1)) * 1024
+        read_bw_mb = re.search(r'READ: bw=(\d*\.*\d+)MiB/s', data)
+        if read_bw_mb:
+            result['read_bw'] = float(read_bw_mb.group(1))
+        write_bw_gb = re.search(r'WRITE: bw=(\d*\.*\d+)GiB/s', data)
+        if write_bw_gb:
+            result['write_bw'] = float(write_bw_gb.group(1)) * 1024
+        write_bw_mb = re.search(r'WRITE: bw=(\d*\.*\d+)MiB/s', data)
+        if write_bw_mb:
+            result['write_bw'] = float(write_bw_mb.group(1))
+        read_lat_ms = re.search(r'read: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if read_lat_ms:
+            result['read_lat'] = float(read_lat_ms.group(1)) * 1000
+        read_lat_us = re.search(r'read: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if read_lat_us:
+            result['read_lat'] = float(read_lat_us.group(1))
+        read_lat_ns = re.search(r'read: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if read_lat_ns:
+            result['read_lat'] = float(read_lat_ns.group(1)) / 1000
+        write_lat_ms = re.search(r'write: IOPS.*\n.*\n *clat \(msec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if write_lat_ms:
+            result['write_lat'] = float(write_lat_ms.group(1)) * 1000
+        write_lat_us = re.search(r'write: IOPS.*\n.*\n *clat \(usec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if write_lat_us:
+            result['write_lat'] = float(write_lat_us.group(1))
+        write_lat_ns = re.search(r'write: IOPS.*\n.*\n *clat \(nsec\): min=(?:\d*\.*\d+), max=(?:\d*\.*\d+), avg=(\d*\.*\d+),', data, re.M)
+        if write_lat_ns:
+            result['write_lat'] = float(write_lat_ns.group(1)) / 1000
+    return result
 
+def collect_data(draid_path, spdk_path, linux_path):
+    for i in filenames:
+        extracted_data = parse_log(draid_path + i)
+        if extracted_data['read_bw']:
+            np.append(draid_bw, extracted_data['read_bw'])
+        else:
+            np.append(draid_bw, 0)
+        if extracted_data['read_lat']:
+            np.append(draid_lat, extracted_data['read_lat'])
+        else:
+            np.append(draid_lat, 0)
+        extracted_data = parse_log(spdk_path + i)
+        if extracted_data['read_bw']:
+            np.append(spdk_bw, extracted_data['read_bw'])
+        else:
+            np.append(spdk_bw, 0)
+        if extracted_data['read_lat']:
+            np.append(spdk_lat, extracted_data['read_lat'])
+        else:
+            np.append(spdk_lat, 0)
+        extracted_data = parse_log(linux_path + i)
+        if extracted_data['read_bw']:
+            np.append(linux_bw, extracted_data['read_bw'])
+        else:
+            np.append(linux_bw, 0)
+        if extracted_data['read_lat']:
+            np.append(linux_lat, extracted_data['read_lat'])
+        else:
+            np.append(linux_lat, 0)
 
 def add_value_labels(ax, spacing=5, formatstr="{:.1f}"):
     """Add labels to the end of each bar in a bar chart.
@@ -227,6 +238,6 @@ def _raid5_read_lat():
     plt.legend(fontsize=27, frameon=False)
     plt.savefig('plots/fig9b.pdf', bbox_inches='tight', pad_inches=0.2)
 
-#_raid5_read_bw()
-#_raid5_read_lat()
-parse_log(sys.argv[1] + '/4K.log')
+collect_data(sys.argv[1], sys.argv[2], sys.argv[3])
+_raid5_read_bw()
+_raid5_read_lat()
