@@ -72,53 +72,53 @@ def collect_data(draid_path, spdk_path, linux_path):
         linux_lat_read, spdk_lat_write, spdk_lat_read, draid_lat_write, draid_lat_read, linux_lat, spdk_lat, draid_lat
     for i in filenames:
         extracted_data = parse_log(os.path.join(draid_path, i))
-        if extracted_data['read_bw']:
+        if 'read_bw' in extracted_data:
             draid_bw_read.append(extracted_data['read_bw'])
         else:
             draid_bw_read.append(0)
-        if extracted_data['read_lat']:
+        if 'read_lat' in extracted_data:
             draid_lat_read.append(extracted_data['read_lat'])
         else:
             draid_lat_read.append(0)
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             draid_bw_write.append(extracted_data['write_bw'])
         else:
             draid_bw_write.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             draid_lat_write.append(extracted_data['write_lat'])
         else:
             draid_lat_write.append(0)
         extracted_data = parse_log(os.path.join(spdk_path, i))
-        if extracted_data['read_bw']:
+        if 'read_bw' in extracted_data:
             spdk_bw_read.append(extracted_data['read_bw'])
         else:
             spdk_bw_read.append(0)
-        if extracted_data['read_lat']:
+        if 'read_lat' in extracted_data:
             spdk_lat_read.append(extracted_data['read_lat'])
         else:
             spdk_lat_read.append(0)
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             spdk_bw_write.append(extracted_data['write_bw'])
         else:
             spdk_bw_write.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             spdk_lat_write.append(extracted_data['write_lat'])
         else:
             spdk_lat_write.append(0)
         extracted_data = parse_log(os.path.join(linux_path, i))
-        if extracted_data['read_bw']:
+        if 'read_bw' in extracted_data:
             linux_bw_read.append(extracted_data['read_bw'])
         else:
             linux_bw_read.append(0)
-        if extracted_data['read_lat']:
+        if 'read_lat' in extracted_data:
             linux_lat_read.append(extracted_data['read_lat'])
         else:
             linux_lat_read.append(0)
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             linux_bw_write.append(extracted_data['write_bw'])
         else:
             linux_bw_write.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             linux_lat_write.append(extracted_data['write_lat'])
         else:
             linux_lat_write.append(0)

@@ -61,29 +61,29 @@ def collect_data(draid_path, spdk_path, linux_path):
     global linux_bw, spdk_bw, draid_bw, linux_lat, spdk_lat, draid_lat
     for i in filenames:
         extracted_data = parse_log(os.path.join(draid_path, i))
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             draid_bw.append(extracted_data['write_bw'])
         else:
             draid_bw.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             draid_lat.append(extracted_data['write_lat'])
         else:
             draid_lat.append(0)
         extracted_data = parse_log(os.path.join(spdk_path, i))
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             spdk_bw.append(extracted_data['write_bw'])
         else:
             spdk_bw.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             spdk_lat.append(extracted_data['write_lat'])
         else:
             spdk_lat.append(0)
         extracted_data = parse_log(os.path.join(linux_path, i))
-        if extracted_data['write_bw']:
+        if 'write_bw' in extracted_data:
             linux_bw.append(extracted_data['write_bw'])
         else:
             linux_bw.append(0)
-        if extracted_data['write_lat']:
+        if 'write_lat' in extracted_data:
             linux_lat.append(extracted_data['write_lat'])
         else:
             linux_lat.append(0)
