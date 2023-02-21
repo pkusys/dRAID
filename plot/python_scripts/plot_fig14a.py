@@ -195,7 +195,7 @@ def _raid5_write():
 
     plt.legend(fontsize=18, frameon=False, loc='upper right')
     plt.xticks(ticks=[0,2500,5000,7500,10000], labels=[0,2500,5000,7500,10000])
-    plt.savefig('raid5/write-bw-vs-lat-write.pdf', bbox_inches='tight', pad_inches=0.2)
+    plt.savefig('plots/fig14a.pdf', bbox_inches='tight', pad_inches=0.2)
 
 
 collect_data(sys.argv[1], sys.argv[2], sys.argv[3])
