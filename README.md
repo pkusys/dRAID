@@ -6,6 +6,7 @@ We provide the artifact for the ASPLOS 2023 paper "Disaggregated RAID Storage in
 - CloudLab testbed setup scripts.
 - FIO experiment scripts (Sec 9.2-9.5), which get the main results of the paper.
 - YCSB experiment scripts (Sec 9.6).
+- Plotting scripts.
 
 ## 1. CloudLab Testbed Setup
 
@@ -22,6 +23,10 @@ Please see `FIO/README.md` for more details.
 ## 3b. YCSB Experiments
 
 Please see `YCSB/README.md` for more details.
+
+## 4. Plot
+
+Please see `plot/README.md` for more details.
 
 ***
 For any question, please contact `shujunyi@pku.edu.cn`.

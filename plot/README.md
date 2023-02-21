@@ -5,7 +5,7 @@ Once you have the results ready, you can use the scripts we created to generate 
 Make sure you have `Python3` along with `matplotlib` and `numpy`. Then simply run the following commands on your own computer:
 ```Bash
 cd <your local path to this repository>/plot
-./pull_results.sh
+./pull_results.sh <your_CloudLab_username> # we reuse the manifest file under setup directory
 ./generate_all.sh
 ```
 It will copy results from the remote nodes to local directories, then run the Python programs to generate all the figures.
