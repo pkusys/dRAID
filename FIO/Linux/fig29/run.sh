@@ -2,12 +2,14 @@
 
 stripe_width=$1
 
+mkdir -p results
+
 if [[ "$stripe_width" == "4" ]]
 then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=4 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=5 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=5 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -22,7 +24,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=6 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -39,7 +41,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=8 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=5 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=5 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -58,7 +60,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=10 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -79,7 +81,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=12 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1 /dev/nvme12n1 /dev/nvme13n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=4 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -102,7 +104,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=14 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1 /dev/nvme12n1 /dev/nvme13n1 /dev/nvme14n1 /dev/nvme15n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=3 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=3 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -127,7 +129,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=16 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1 /dev/nvme12n1 /dev/nvme13n1 /dev/nvme14n1 /dev/nvme15n1 /dev/nvme16n1 /dev/nvme17n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=2 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=2 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1
@@ -154,7 +156,7 @@ then
   sudo mdadm --create -v /dev/md0 --assume-clean --chunk=512 --level=6 --raid-devices=18 --size=134217728 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1 /dev/nvme12n1 /dev/nvme13n1 /dev/nvme14n1 /dev/nvme15n1 /dev/nvme16n1 /dev/nvme17n1 /dev/nvme18n1 /dev/nvme19n1
 
   sudo mdadm /dev/md0 -f /dev/nvme2n1
-  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=2 --numjobs=1
+  sudo fio --filename=/dev/md0 --size=2048M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randwrite --rw=randread --rwmixread=0 --bs=128K --iodepth=2 --numjobs=1 > results/${stripe_width}.log
 
   sudo mdadm -S /dev/md0
   sudo mdadm --zero-superblock /dev/nvme2n1

@@ -3,6 +3,7 @@
 username=`whoami`
 stripe_width=$1
 
+mkdir -p results
 sudo kill -9 $(ps aux | grep '[r]aid' | awk '{print $2}')
 
 if [[ "$stripe_width" == "4" ]]
@@ -10,7 +11,7 @@ then
   ../generate_raid_config.sh 512 4 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 4 2
   sleep 3
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=8 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=8 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -19,7 +20,7 @@ then
   ../generate_raid_config.sh 512 6 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 6 2
   sleep 4
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=9 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=9 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -28,7 +29,7 @@ then
   ../generate_raid_config.sh 512 8 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 8 2
   sleep 5
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=12 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=12 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -37,7 +38,7 @@ then
   ../generate_raid_config.sh 512 10 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 10 2
   sleep 6
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=15 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=15 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -46,7 +47,7 @@ then
   ../generate_raid_config.sh 512 12 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 12 2
   sleep 7
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=19 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=19 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -55,7 +56,7 @@ then
   ../generate_raid_config.sh 512 14 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 14 2
   sleep 8
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=22 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=22 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -64,7 +65,7 @@ then
   ../generate_raid_config.sh 512 16 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 16 2
   sleep 9
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=26 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=26 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 
@@ -73,7 +74,7 @@ then
   ../generate_raid_config.sh 512 18 2
   ../run_server_remote_nvme.sh $username raid6 100g 512 18 2
   sleep 10
-  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=28 -rw=randwrite -bs=128k -numjobs=2
+  sudo LD_PRELOAD=../spdk_bdev /usr/local/bin/fio ../raid6.conf -ioengine=../spdk_bdev -iodepth=28 -rw=randwrite -bs=128k -numjobs=2 > results/${stripe_width}.log
   exit 0
 fi
 

@@ -2,33 +2,35 @@
 
 read_ratio=$1
 
+mkdir -p results
+
 if [[ "$read_ratio" == "0" ]]
 then
-  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=4 --numjobs=2 --rwmixread=0
+  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=4 --numjobs=2 --rwmixread=0 > results/${read_ratio}.log
   exit 0
 fi
 
 if [[ "$read_ratio" == "25" ]]
 then
-  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=4 --numjobs=2 --rwmixread=25
+  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=4 --numjobs=2 --rwmixread=25 > results/${read_ratio}.log
   exit 0
 fi
 
 if [[ "$read_ratio" == "50" ]]
 then
-  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=3 --numjobs=4 --rwmixread=50
+  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=3 --numjobs=4 --rwmixread=50 > results/${read_ratio}.log
   exit 0
 fi
 
 if [[ "$read_ratio" == "75" ]]
 then
-  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=6 --numjobs=4 --rwmixread=75
+  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=6 --numjobs=4 --rwmixread=75 > results/${read_ratio}.log
   exit 0
 fi
 
 if [[ "$read_ratio" == "100" ]]
 then
-  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=8 --numjobs=4 --rwmixread=100
+  sudo fio --filename=/dev/md0 --size=8196M --time_based --runtime=15s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --group_reporting=1 --name=randrw --rw=randrw --bs=128K --iodepth=8 --numjobs=4 --rwmixread=100 > results/${read_ratio}.log
   exit 0
 fi
 
